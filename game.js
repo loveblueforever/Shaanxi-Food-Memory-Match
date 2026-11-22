@@ -19,7 +19,7 @@ const FOODS = [
     id: 'roujiamo',
     name: 'Roujiamo',
     nameZh: '肉夹馍',
-    image: 'assets/roujiamo.jpg',
+    image: 'roujiamo.jpg',
     desc: 'Shaanxi\'s signature street snack: shredded braised pork stuffed into a freshly baked white ji-mo bun. The bun is crisp, the meat is tender and juicy — locals call it the Chinese hamburger.',
     descZh: '陕西的招牌小吃，腊汁肉剁碎夹进刚出炉的白吉馍，馍酥肉烂、汁香四溢。当地人叫它“中式汉堡”，咬一口热气腾腾，最是解馋。'
   },
@@ -27,7 +27,7 @@ const FOODS = [
     id: 'liangpi',
     name: 'Liangpi',
     nameZh: '凉皮',
-    image: 'assets/liangpi.jpg',
+    image: 'liangpi.jpg',
     desc: 'Cold skin noodles made from wheat starch, cut into strips and dressed with vinegar, garlic water and chili oil. Springy, tangy and refreshing — a Shaanxi summer favorite.',
     descZh: '用小麦面粉洗出面筋后蒸成的皮子，切成细条，浇上醋、蒜水与油泼辣子。口感筋道爽滑，酸辣开胃，夏天吃上一碗浑身舒坦。'
   },
@@ -35,7 +35,7 @@ const FOODS = [
     id: 'yangroupaomo',
     name: 'Yangrou Paomo',
     nameZh: '羊肉泡馍',
-    image: 'assets/yangroupaomo.jpg',
+    image: 'yangroupaomo.jpg',
     desc: 'Xi\'an\'s most ceremonial bowl of food: you tear the flat mo bread into tiny pieces yourself, then the cook simmers them in rich mutton broth. Served with sweet pickled garlic and chili sauce.',
     descZh: '西安最有仪式感的一碗饭，讲究自己把坨坨馍掰成黄豆大小，再交给师傅加羊肉汤煮。汤浓肉烂、馍筋入味，配糖蒜与辣酱更地道。'
   },
@@ -43,7 +43,7 @@ const FOODS = [
     id: 'biangbiangmian',
     name: 'Biangbiang Mian',
     nameZh: 'biangbiang 面',
-    image: 'assets/biangbiangmian.jpg',
+    image: 'biangbiangmian.jpg',
     desc: 'Noodles as wide as a belt, slapped on the counter with a loud "biang biang" sound — that is how they got the name. Topped with chili flakes and finished with a splash of sizzling hot oil.',
     descZh: '面条宽如裤带，在案板上摔打时发出“biáng biáng”声响，因此得名。热油一泼，辣子香立刻窜起来，一根面就能吃个半饱。'
   },
@@ -51,7 +51,7 @@ const FOODS = [
     id: 'saozimian',
     name: 'Saozi Mian',
     nameZh: '臊子面',
-    image: 'assets/saozimian.jpg',
+    image: 'saozimian.jpg',
     desc: 'A festive noodle from the Guanzhong plain: thin noodles in a sour-spicy broth with diced tofu, wood ear and daylily. Locals say it should be thin, springy, glossy and piping hot.',
     descZh: '关中人逢年过节必吃的面，细长面条浇上酸辣鲜香的臊子汤，配以豆腐丁、木耳、黄花菜。讲究“薄筋光、煎稀汪”，一碗面汤也能喝光。'
   },
@@ -59,7 +59,7 @@ const FOODS = [
     id: 'niangpi',
     name: 'Niangpi',
     nameZh: '酿皮',
-    image: 'assets/niangpi.jpg',
+    image: 'niangpi.jpg',
     desc: 'A Shaanxi cold noodle skin that is even thinner than liangpi, cut into fine strips and served with cilantro and slivers of lamb liver, dressed with vinegar, garlic water and chili oil.',
     descZh: '比凉皮更薄的冷食面皮，切成细条，配上香菜和羊肝片，再浇上醋、蒜水与辣椒油。'
   },
@@ -67,7 +67,7 @@ const FOODS = [
     id: 'zenggao',
     name: 'Zenggao',
     nameZh: '甑糕',
-    image: 'assets/zenggao.jpg',
+    image: 'zenggao.jpg',
     desc: 'A sweet steamed cake of glutinous rice and red dates, layered and cooked for hours in an old zeng steamer. Sticky, soft and full of date fragrance — a classic Xi\'an breakfast.',
     descZh: '糯米与红枣一层层码进老甑里蒸成的甜糕，枣香渗进米中，甜糯黏软。西安街头常见一层层刮下来卖，是许多人记忆里的早点。'
   },
@@ -75,7 +75,7 @@ const FOODS = [
     id: 'guokui',
     name: 'Guokui',
     nameZh: '锅盔',
-    image: 'assets/guokui.jpg',
+    image: 'guokui.jpg',
     desc: 'A thick baked flatbread as big as a pot lid, golden and crisp outside, soft and layered inside. Once the traveler\'s ration because it keeps well, best eaten with a bowl of soup.',
     descZh: '像锅盖一样大的厚实烙饼，外皮金黄酥脆，内里层层柔软。以前是赶路人的干粮，耐放顶饱，配一碗汤面最是相宜。'
   },
@@ -83,7 +83,7 @@ const FOODS = [
     id: 'youpomian',
     name: 'Youpo Mian',
     nameZh: '油泼面',
-    image: 'assets/youpomian.jpg',
+    image: 'youpomian.jpg',
     desc: 'Wide handmade noodles topped with chili flakes and scallions, then hit with a ladle of smoking hot oil. The simplest recipe and one of the most aromatic bowls in Shaanxi.',
     descZh: '宽面条上撒辣椒面与葱花，一勺滚油“刺啦”泼下，香气瞬间炸开。做法极简却极香，是陕西面食里最直击味蕾的一碗。'
   },
@@ -91,7 +91,7 @@ const FOODS = [
     id: 'lumo',
     name: 'Lumo',
     nameZh: '炉馍',
-    image: 'assets/lumo.jpg',
+    image: 'lumo.jpg',
     desc: 'A traditional Shaanxi bun baked in a clay oven: golden and crisp on the outside, soft and layered inside, with a light aroma of oil and salt. Eaten with soup or porridge.',
     descZh: '陕西传统的炉烤面食，外皮金黄酥脆、内里层层松软，带着一点油盐香。多配汤粥食用，过去也是出门赶路时的干粮。'
   }
