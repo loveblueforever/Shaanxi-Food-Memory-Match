@@ -1,0 +1,732 @@
+/* ============================================================
+   陕西美食记忆翻牌 —— 样式表
+   配色思路：砖红（陕西民居）+ 土黄（麦面）+ 米白纸感底色
+   ============================================================ */
+
+:root {
+  --red: #b23a2e;
+  --red-dark: #8d2a20;
+  --gold: #d9a441;
+  --ink: #2b1d16;
+  --ink-light: #6b564a;
+  --paper: #f6efe4;
+  --card-back-1: #a8342a;
+  --card-back-2: #7e241c;
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(43, 29, 22, .18);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(217, 164, 65, .18), transparent 45%),
+    radial-gradient(circle at 88% 92%, rgba(178, 58, 46, .16), transparent 45%),
+    var(--paper);
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+/* ---------- 屏幕（视图）切换 ---------- */
+.screen {
+  display: none;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* ---------- 通用按钮 ---------- */
+.btn {
+  font-family: inherit;
+  font-size: 15px;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: transform .12s ease, background .2s ease, opacity .2s ease;
+}
+
+.btn:active {
+  transform: scale(.96);
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, var(--red), var(--red-dark));
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(178, 58, 46, .35);
+}
+
+.btn-plain {
+  background: #ece3d6;
+  color: var(--ink-light);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, .24);
+  color: var(--ink);
+  border: 1px solid rgba(43, 29, 22, .28);
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.btn-lg {
+  font-size: 17px;
+  padding: 14px 32px;
+  letter-spacing: 1px;
+}
+
+.btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   1. 开始界面
+   ============================================================ */
+#screen-start {
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.start-box {
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+  background: rgba(255, 255, 255, .72);
+  border: 1px solid rgba(178, 58, 46, .18);
+  border-radius: 20px;
+  padding: 40px 26px 36px;
+  box-shadow: var(--shadow);
+  animation: fadeUp .45s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.game-title {
+  font-size: 28px;
+  margin: 0 0 4px;
+  letter-spacing: 1px;
+  color: var(--red-dark);
+}
+
+/* 中文标题（英文为主，中文为辅） */
+.game-title-zh {
+  margin: 0 0 16px;
+  font-size: 17px;
+  letter-spacing: 4px;
+  color: var(--red);
+}
+
+.game-sub {
+  margin: 0 0 26px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--ink-light);
+}
+
+.difficulty {
+  margin-bottom: 30px;
+}
+
+.diff-label {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-light);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.diff-options {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.diff-btn {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(43, 29, 22, .2);
+  background: #fff;
+  color: var(--ink-light);
+  cursor: pointer;
+  transition: all .18s ease;
+}
+
+.diff-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ============================================================
+   2. 游戏界面
+   ============================================================ */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, var(--red), var(--red-dark));
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+}
+
+.topbar .btn-ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, .5);
+  background: rgba(255, 255, 255, .14);
+}
+
+.topbar-title {
+  font-size: 16px;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.topbar-tip {
+  font-size: 13px;
+  opacity: .9;
+}
+
+/* 计分区 */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  padding: 12px 10px;
+  background: rgba(255, 255, 255, .7);
+  border-bottom: 1px solid rgba(43, 29, 22, .08);
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-label {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-light);
+  margin-bottom: 3px;
+}
+
+.stat-value {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--red-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-value em {
+  font-style: normal;
+}
+
+/* 棋盘 */
+.board-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  overflow-y: auto;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 620px;
+}
+
+/* ---------- 卡牌（3D 翻转） ---------- */
+.card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  perspective: 900px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .45s cubic-bezier(.4, .1, .3, 1.2);
+}
+
+.card.flipped .card-inner,
+.card.matched .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* 卡背：简单渐变 + 文字，无需图片 */
+.card-back {
+  background: linear-gradient(160deg, var(--card-back-1), var(--card-back-2));
+  border: 2px solid rgba(255, 255, 255, .22);
+  box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .08), var(--shadow);
+}
+
+/* 卡背英文小字（英文为主） */
+.card-back::before {
+  content: "SHAANXI";
+  position: absolute;
+  top: 9%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, .68);
+}
+
+.card-back::after {
+  content: "陕";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: rgba(255, 255, 255, .82);
+  font-weight: 700;
+}
+
+/* 卡面 */
+.card-front {
+  transform: rotateY(180deg);
+  background: #e9e0d2;
+  border: 2px solid rgba(43, 29, 22, .12);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 图片缺失时的灰底占位（onerror 时加 .no-img） */
+.card.no-img .card-front {
+  background: linear-gradient(160deg, #ded6c8, #cfc5b4);
+}
+
+.card.no-img .card-front img {
+  display: none;
+}
+
+.card.no-img .card-front::before {
+  content: "图";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 24px;
+  color: #a89c8c;
+  opacity: .8;
+}
+
+/* 卡面底部的食物名字（英文为主 + 中文小字，半透明底条 + 白字） */
+.food-name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 5px 4px 6px;
+  line-height: 1.25;
+  text-align: center;
+  color: #fff;
+  background: rgba(43, 29, 22, .62);
+}
+
+.food-name b {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+
+.food-name em {
+  display: block;
+  font-style: normal;
+  font-size: 11px;
+  opacity: .85;
+  letter-spacing: 1px;
+}
+
+/* 已配对的卡牌轻微标记 */
+.card.matched {
+  cursor: default;
+}
+
+.card.matched .card-front {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(217, 164, 65, .55);
+}
+
+/* ============================================================
+   3. 遮罩与弹窗
+   ============================================================ */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(43, 29, 22, .55);
+  backdrop-filter: blur(3px);
+  animation: fadeIn .2s ease both;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  width: 100%;
+  max-width: 420px;
+  background: var(--paper);
+  border-radius: 18px;
+  padding: 26px 22px;
+  text-align: center;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .3);
+  animation: fadeUp .3s ease both;
+}
+
+.modal-small {
+  max-width: 340px;
+}
+
+.modal-title {
+  margin: 0 0 4px;
+  font-size: 21px;
+  color: var(--red-dark);
+  letter-spacing: .5px;
+}
+
+/* 弹窗标题的中文副行 */
+.modal-title-zh {
+  margin: 0 0 14px;
+  font-size: 15px;
+  color: var(--red);
+  letter-spacing: 2px;
+}
+
+.modal-text {
+  margin: 0 0 22px;
+  font-size: 14px;
+  color: var(--ink-light);
+  line-height: 1.7;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- 美食介绍卡 ---------- */
+.intro-card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--paper);
+  border-radius: 18px;
+  padding: 18px 18px 22px;
+  text-align: center;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .3);
+  animation: fadeUp .3s ease both;
+}
+
+.intro-img-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #ded6c8, #cfc5b4);
+  margin-bottom: 14px;
+}
+
+.intro-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* 图片未放入时的文字占位（默认显示，图片加载成功后被覆盖） */
+.intro-img-box .img-placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-light);
+  line-height: 1.6;
+}
+
+.intro-img-box.img-error img {
+  display: none;
+}
+
+.intro-name {
+  margin: 0 0 2px;
+  font-size: 22px;
+  color: var(--red-dark);
+  letter-spacing: .5px;
+}
+
+/* 介绍卡的中文名字（英文为主） */
+.intro-name-zh {
+  margin: 0 0 12px;
+  font-size: 15px;
+  color: var(--red);
+  letter-spacing: 3px;
+}
+
+.intro-desc {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ink-light);
+  text-align: left;
+}
+
+/* 中文简介 */
+.intro-desc-zh {
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--ink-light);
+  text-align: left;
+  opacity: .9;
+}
+
+/* ============================================================
+   4. 美食图鉴界面
+   ============================================================ */
+.codex-wrap {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.codex-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.codex-item {
+  background: rgba(255, 255, 255, .78);
+  border: 1px solid rgba(43, 29, 22, .1);
+  border-radius: 14px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(43, 29, 22, .07);
+}
+
+.codex-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #ded6c8, #cfc5b4);
+  margin-bottom: 8px;
+}
+
+.codex-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.codex-name {
+  font-family: inherit;
+  border: none;
+  background: none;
+  color: var(--red-dark);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 8px;
+  transition: background .18s ease;
+  line-height: 1.3;
+}
+
+/* 图鉴名字：英文为主 + 中文小字 */
+.codex-name .nm-en {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.codex-name .nm-zh {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-light);
+  letter-spacing: 1px;
+}
+
+.codex-name:hover {
+  background: rgba(217, 164, 65, .25);
+}
+
+/* ============================================================
+   5. 移动端适配
+   ============================================================ */
+@media (max-width: 560px) {
+  .game-title {
+    font-size: 22px;
+  }
+
+  .game-title-zh {
+    font-size: 15px;
+    letter-spacing: 3px;
+  }
+
+  .topbar {
+    padding: 10px 12px;
+  }
+
+  .topbar-title {
+    font-size: 13px;
+    letter-spacing: 0;
+  }
+
+  /* 手机端按钮已含双语，隐藏游戏界面的长标题避免挤压 */
+  #screen-game .topbar-title {
+    display: none;
+  }
+
+  .btn-ghost {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+
+  .stats {
+    padding: 10px 6px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+  }
+
+  .stat-value {
+    font-size: 15px;
+  }
+
+  .board {
+    gap: 7px;
+  }
+
+  .food-name {
+    padding: 4px 2px 5px;
+  }
+
+  .food-name b {
+    font-size: 10px;
+  }
+
+  .food-name em {
+    font-size: 9px;
+  }
+
+  .card-back::after {
+    font-size: 22px;
+  }
+
+  .codex-list {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+  }
+
+  .codex-name .nm-en {
+    font-size: 13px;
+  }
+
+  .codex-name .nm-zh {
+    font-size: 11px;
+  }
+
+  .topbar-tip {
+    font-size: 11px;
+  }
+}
+
+/* 横屏时限制卡牌高度，避免超出屏幕 */
+@media (orientation: landscape) and (max-height: 520px) {
+  .board {
+    max-width: 460px;
+  }
+
+  .card {
+    aspect-ratio: 1 / 1;
+  }
+}

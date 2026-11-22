@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Shaanxi Food Memory Match · 陕西美食记忆翻牌</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ==================== 1. Start Screen 开始界面 ==================== -->
+  <section id="screen-start" class="screen active">
+    <div class="start-box">
+      <h1 class="game-title">Shaanxi Food Memory Match</h1>
+      <p class="game-title-zh">陕西美食记忆翻牌</p>
+      <p class="game-sub">
+        Flip the cards and remember every Shaanxi flavor<br>
+        翻开卡牌，记住每一道陕西味道
+      </p>
+
+      <!-- 难度选择 / Difficulty -->
+      <div class="difficulty">
+        <span class="diff-label">Difficulty · 难度选择</span>
+        <div class="diff-options" id="diff-options">
+          <button class="diff-btn active" data-diff="easy">Easy 简单 4×3</button>
+          <button class="diff-btn" data-diff="normal">Normal 普通 4×4</button>
+          <button class="diff-btn" data-diff="hard">Hard 困难 4×5</button>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-lg" id="btn-start">Start Game · 开始游戏</button>
+    </div>
+  </section>
+
+  <!-- ==================== 2. Game Screen 游戏界面 ==================== -->
+  <section id="screen-game" class="screen">
+    <!-- 顶部栏 / Top bar -->
+    <header class="topbar">
+      <button class="btn btn-ghost" id="btn-pause">Pause · 暂停</button>
+      <span class="topbar-title">Shaanxi Food Memory Match</span>
+      <button class="btn btn-ghost" id="btn-codex">Food Codex · 美食图鉴</button>
+    </header>
+
+    <!-- 计分区 / Score panel -->
+    <div class="stats">
+      <div class="stat-item">
+        <span class="stat-label">Matched 已配对</span>
+        <span class="stat-value"><em id="stat-pairs">0</em> / <em id="stat-pairs-total">0</em></span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Flips 翻牌次数</span>
+        <span class="stat-value" id="stat-flips">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Time 用时</span>
+        <span class="stat-value" id="stat-time">00:00</span>
+      </div>
+    </div>
+
+    <!-- 卡牌网格 / Card grid -->
+    <main class="board-wrap">
+      <div class="board" id="board"></div>
+    </main>
+  </section>
+
+  <!-- ==================== 3. Pause Overlay 暂停遮罩 ==================== -->
+  <div class="overlay hidden" id="overlay-pause">
+    <div class="modal modal-small">
+      <h2 class="modal-title">Game Paused</h2>
+      <p class="modal-title-zh">游戏已暂停</p>
+      <p class="modal-text">
+        Timer stopped, cards are locked.<br>
+        计时已停止，卡牌暂时不能翻开
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="btn-resume">Resume · 继续游戏</button>
+        <button class="btn btn-plain" id="btn-end">End Game · 结束游戏</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 4. Food Intro Card 美食介绍卡弹窗 ==================== -->
+  <div class="overlay hidden" id="modal-intro">
+    <div class="intro-card">
+      <div class="intro-img-box">
+        <!-- 图片路径来自 game.js 中的 image（卡面与介绍卡共用同一张），请用户自行放入同名 jpg
+             Image path comes from "image" in game.js (shared by card & intro) — please drop the same-named jpg in -->
+        <img id="intro-img" src="" alt="Food intro image">
+        <span class="img-placeholder">
+          Image not added yet<br>图片待放入 assets/
+        </span>
+      </div>
+      <h2 class="intro-name" id="intro-name">Food Name</h2>
+      <p class="intro-name-zh" id="intro-name-zh">食物名字</p>
+      <p class="intro-desc" id="intro-desc">English introduction.</p>
+      <p class="intro-desc-zh" id="intro-desc-zh">中文简介。</p>
+      <button class="btn btn-primary" id="btn-intro-close">Close · 关闭</button>
+    </div>
+  </div>
+
+  <!-- ==================== 5. Result Modal 结算弹窗 ==================== -->
+  <div class="overlay hidden" id="modal-result">
+    <div class="modal">
+      <h2 class="modal-title">All Matched!</h2>
+      <p class="modal-title-zh">全部配对完成！</p>
+      <p class="modal-text" id="result-text">You collected every Shaanxi flavor.<br>你已集齐所有陕西美食记忆</p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="btn-replay">Play Again · 再玩一次</button>
+        <button class="btn btn-plain" id="btn-back-start">Back to Start · 返回开始界面</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 6. Food Codex 美食图鉴界面 ==================== -->
+  <section id="screen-codex" class="screen">
+    <header class="topbar">
+      <button class="btn btn-ghost" id="btn-codex-back">← Back to Game · 返回游戏</button>
+      <span class="topbar-title">Food Codex · 美食图鉴</span>
+      <span class="topbar-tip" id="codex-progress">10 dishes · 共 10 道美食</span>
+    </header>
+    <main class="codex-wrap">
+      <div class="codex-list" id="codex-list"></div>
+    </main>
+  </section>
+
+  <script src="game.js"></script>
+</body>
+
+</html>
